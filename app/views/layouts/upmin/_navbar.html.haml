@@ -1,7 +1,7 @@
 .navbar.navbar-default.navbar-static-top
   .container
     .navbar-header
-      %a.navbar-brand{href: root_path}
+      %a.navbar-brand{href: root_path, rel: 'external'}
         Upmin
       %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", type: "button"}
         %span.icon-bar
@@ -11,5 +11,5 @@
       %ul.nav.navbar-nav
         - Upmin::Model.all.each do |m|
           %li
-            %a{href: m.search_path}
+            %a{href: m.search_path, rel: 'external'}
               = m.humanized_name(:plural)
