@@ -112,10 +112,13 @@ module Upmin
 
     def Model.find_or_create_class(model_name)
       ::Rails.application.eager_load!
-      return "Admin#{model_name}".constantize
-    rescue NameError
-      eval("class ::Admin#{model_name} < Upmin::Model; end")
-      return "Admin#{model_name}".constantize
+      model_name = model_name.constantize.base_class.to_s
+      begin
+        return "Admin#{model_name}".constantize
+      rescue NameError
+        eval("class ::Admin#{model_name} < Upmin::Model; end")
+        return "Admin#{model_name}".constantize
+      end
     end
 
     # Returns all upmin models.
