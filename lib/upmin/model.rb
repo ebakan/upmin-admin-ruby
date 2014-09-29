@@ -127,7 +127,7 @@ module Upmin
       Upmin.configuration.models.each do |m|
         all << find_or_create_class(m.to_s.camelize)
       end
-      return all
+      return all.uniq
     end
 
     def Model.model_class
